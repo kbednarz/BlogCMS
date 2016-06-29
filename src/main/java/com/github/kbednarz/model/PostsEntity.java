@@ -64,4 +64,15 @@ public class PostsEntity {
     public long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "PostsEntity{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

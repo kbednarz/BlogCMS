@@ -5,7 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-
-
+    <form action="#" th:action="@{/create}" th:object="${newPost}" method="POST">
+        <p>Author: <input type="text" th:name="author" th:field="*{author}" /></p>
+        <p>Title: <input type="text" th:name="title" th:field="*{title}" /></p>
+        <p>Content <input type="text" th:name="content" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
 </body>
 </html>
