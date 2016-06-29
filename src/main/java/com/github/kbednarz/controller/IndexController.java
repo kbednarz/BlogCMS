@@ -14,7 +14,7 @@ public class IndexController {
     @Autowired
     PostsRepository postsRepository;
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index(Model model){
         model.addAttribute("posts", postsRepository.findAll());
         return "index";

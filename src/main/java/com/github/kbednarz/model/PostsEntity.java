@@ -1,15 +1,13 @@
 package com.github.kbednarz.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
  * Created by Kamil on 2016-06-28.
  */
 @Entity
+@Table(name = "POSTS")
 public class PostsEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

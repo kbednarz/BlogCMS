@@ -37,6 +37,6 @@ public class PostsController {
     public String createPost(@ModelAttribute("newPost") PostsEntity entity){
         entity.setDate(new Date(System.currentTimeMillis()));
         postsRepository.save(entity);
-        return "create";
+        return "redirect:/index";
     }
 }
