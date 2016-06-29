@@ -33,6 +33,9 @@ public class PostsRepositoryTest {
 
         assertNotNull(entity);
         assertEquals(initialEntity.getAuthor(),entity.getAuthor());
+        assertEquals(initialEntity.getContent(),entity.getContent());
+        assertEquals(initialEntity.getTitle(),entity.getTitle());
+        assertEquals(initialEntity.getDate(),entity.getDate());
 
     }
 }
