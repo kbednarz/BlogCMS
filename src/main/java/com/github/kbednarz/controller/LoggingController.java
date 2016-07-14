@@ -27,8 +27,16 @@ public class LoggingController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public String createPost(@ModelAttribute("userEntity") UserEntity userEntity){
+    public String createPost(Model model,@ModelAttribute("userEntity") UserEntity userEntity){
+        userRepository.findByName(userEntity.getName());
+        model.addAttribute("isUserExists",true);
+        return "redirect:/index";
+    }
 
-        return "index";
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    public String createNewUser(Model model, @ModelAttribute("userEntity") UserEntity userEntity){
+        userRepository.save(new UserEntity(userEntity.getName(),userEntity.getPassword()));
+        model.addAttribute("isRegistered",true);
+        return "redirect:/index";
     }
 }

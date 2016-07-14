@@ -5,6 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<h1>Login</h1>
+<form action="#" th:action="@{/login}" th:object="${userEntity}" method="POST">
+    <p>Login <input type="text" th:name="login" th:field="*{name}" /></p>
+    <p>Title: <input type="text" th:name="password" th:field="*{password}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<hr />
+<h1>Register</h1>
 <form action="#" th:action="@{/login}" th:object="${userEntity}" method="POST">
     <p>Login <input type="text" th:name="login" th:field="*{name}" /></p>
     <p>Title: <input type="text" th:name="password" th:field="*{password}" /></p>
