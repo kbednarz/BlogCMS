@@ -5,18 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'isUserExists = '+${isUserExists}"/>
-<p th:text="'isRegistered = '+${isRegistered}"/>
 <h1>Login</h1>
 <form action="#" th:action="@{/login}" th:object="${userEntity}" method="POST">
-    <p>Login <input type="text" th:name="login" th:field="*{name}" /></p>
+    <p>Login <input type="text" th:name="username" th:field="*{name}" /></p>
     <p>Password <input type="password" th:name="password" th:field="*{password}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 <hr />
 <h1>Register</h1>
 <form action="#" th:action="@{/register}" th:object="${userEntity}" method="POST">
-    <p>Login <input type="text" th:name="login" th:field="*{name}" /></p>
+    <p>Login <input type="text" th:name="username" th:field="*{name}" /></p>
     <p>Password <input type="password" th:name="password" th:field="*{password}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>

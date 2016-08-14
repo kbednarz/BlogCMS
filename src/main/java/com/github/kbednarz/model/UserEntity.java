@@ -2,36 +2,39 @@ package com.github.kbednarz.model;
 
 import javax.persistence.*;
 
-/**
- * Created by Kamil on 2016-06-29.
- */
 @Entity
+@Table(name = "USERS")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     @Column(unique=true)
-    private String name;
+    private String username;
     private String password;
 
     public UserEntity() {
     }
 
-    public UserEntity(String name, String password) {
-        this.name = name;
+    public UserEntity(String username, String password) {
+        this.username = username;
         this.password = password;
+    }
+
+    public UserEntity(UserEntity user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
     }
 
     public long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getPassword() {

@@ -1,6 +1,5 @@
 package com.github.kbednarz.controller;
 
-import com.github.kbednarz.model.PostsEntity;
 import com.github.kbednarz.model.UserEntity;
 import com.github.kbednarz.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.sql.Date;
 
 /**
  * Created by Kamil on 2016-06-29.
@@ -27,15 +24,15 @@ public class LoggingController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public String createPost(Model model,@ModelAttribute("userEntity") UserEntity userEntity){
-        UserEntity user = userRepository.findByName(userEntity.getName());
+    public String logInUser(Model model,@ModelAttribute("userEntity") UserEntity userEntity){
+        UserEntity user = userRepository.findByUsername(userEntity.getUsername());
         if(user!= null) model.addAttribute("isUserExists",true);
         return "login";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
     public String createNewUser(Model model, @ModelAttribute("userEntity") UserEntity userEntity){
-        userRepository.save(new UserEntity(userEntity.getName(),userEntity.getPassword()));
+        userRepository.save(new UserEntity(userEntity.getUsername(),userEntity.getPassword()));
         model.addAttribute("isRegistered",true);
         return "login";
     }
