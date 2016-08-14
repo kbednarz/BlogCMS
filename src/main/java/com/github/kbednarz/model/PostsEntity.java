@@ -3,9 +3,6 @@ package com.github.kbednarz.model;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * Created by Kamil on 2016-06-28.
- */
 @Entity
 @Table(name = "POSTS")
 public class PostsEntity {
