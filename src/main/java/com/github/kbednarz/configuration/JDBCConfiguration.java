@@ -13,7 +13,7 @@ public class JDBCConfiguration {
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("org.h2.Driver");
-        driverManagerDataSource.setUrl("jdbc:h2:mem:CMS_DATABASE;DB_CLOSE_ON_EXIT=FALSE");
+        driverManagerDataSource.setUrl("jdbc:h2:mem:CMS_DATABASE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1");
         driverManagerDataSource.setUsername("sa");
         driverManagerDataSource.setPassword("");
         return driverManagerDataSource;

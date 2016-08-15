@@ -5,18 +5,23 @@ import com.github.kbednarz.model.UserEntityDetails;
 import com.github.kbednarz.model.UserRoles;
 import com.github.kbednarz.repo.UserRepository;
 import com.github.kbednarz.repo.UserRolesRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserEntityDetailsService implements UserDetailsService{
     @Autowired
     UserRepository userRepository;
     @Autowired
     UserRolesRepository userRolesRepository;
+
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         UserEntity userEntity = userRepository.findByUsername(username);
@@ -25,5 +30,6 @@ public class UserEntityDetailsService implements UserDetailsService{
         }
         List<String> userRoles=userRolesRepository.findRoleByUserName(username);
         return new UserEntityDetails(userEntity,userRoles);
+
     }
 }
