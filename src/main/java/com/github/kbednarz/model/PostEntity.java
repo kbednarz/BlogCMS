@@ -5,7 +5,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "POSTS")
-public class PostsEntity {
+public class PostEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
@@ -14,10 +14,10 @@ public class PostsEntity {
     private String content;
     private Date date;
 
-    public PostsEntity() {
+    public PostEntity() {
     }
 
-    public PostsEntity(String author, String title, String content, Date date) {
+    public PostEntity(String author, String title, String content, Date date) {
         this.author = author;
         this.title = title;
         this.content = content;

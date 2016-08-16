@@ -1,7 +1,7 @@
 package com.github.kbednarz.repo;
 
 import com.github.kbednarz.BlogCmsApplication;
-import com.github.kbednarz.model.PostsEntity;
+import com.github.kbednarz.model.PostEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +25,10 @@ public class PostsRepositoryTest {
     @Test
     public void shouldFind(){
         Date date = new Date(System.currentTimeMillis());
-        PostsEntity initialEntity = new PostsEntity("Kamil","Tytul","Zawartosc",date);
+        PostEntity initialEntity = new PostEntity("Kamil","Tytul","Zawartosc",date);
         postsRepository.save(initialEntity);
 
-        PostsEntity entity;
+        PostEntity entity;
         entity = postsRepository.findOne(initialEntity.getId());
 
         assertNotNull(entity);

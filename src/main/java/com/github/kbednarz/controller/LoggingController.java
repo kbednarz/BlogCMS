@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Created by Kamil on 2016-06-29.
- */
+
 @Controller
 public class LoggingController {
     @Autowired
@@ -21,7 +19,7 @@ public class LoggingController {
     @Autowired
     UserRolesRepository userRolesRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String index(Model model){
         model.addAttribute("userEntity",new UserEntity());
         return "login";
@@ -29,7 +27,7 @@ public class LoggingController {
 
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createNewUser(Model model, @ModelAttribute("userEntity") UserEntity userEntity){
         userRepository.save(new UserEntity(userEntity.getUsername(),userEntity.getPassword()));
         long userId = userRepository.findByUsername(userEntity.getUsername()).getId();
