@@ -14,17 +14,17 @@ import java.util.List;
 
 
 @RestController
-public class PostsController {
+public class PostsRestController {
     @Autowired
     PostsRepository postsRepository;
 
-    @RequestMapping("/posts")
+    @RequestMapping("/rest/posts")
     public ResponseEntity<List<PostEntity>> showAllPosts(){
         List<PostEntity> postsEntities = (List) postsRepository.findAll();
         return new ResponseEntity<List<PostEntity>>(postsEntities, HttpStatus.OK);
     }
 
-    @RequestMapping("/posts/{id}")
+    @RequestMapping("/rest/posts/{id}")
     public ResponseEntity<PostEntity> showSpecificPost(@PathVariable Long id){
         PostEntity postsEntity = postsRepository.findOne(id);
         if (postsEntity == null) {
@@ -33,17 +33,17 @@ public class PostsController {
         return new ResponseEntity<PostEntity>(postsEntity,HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/rest/posts")
     public ResponseEntity<Void> createNewPost(@RequestBody PostEntity postsEntity, UriComponentsBuilder ucBuilder){
         postsEntity.setDate(new Date(System.currentTimeMillis()));
         postsRepository.save(postsEntity);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/posts/{id}").buildAndExpand(postsEntity.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/rest/posts/{id}").buildAndExpand(postsEntity.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/posts/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rest/posts/{id}", method = RequestMethod.PUT)
     public ResponseEntity<PostEntity> updatePost(@PathVariable("id") long id, @RequestBody PostEntity updatedPostEntity) {
         PostEntity currentPostEntity = postsRepository.findOne(id);
         if (currentPostEntity == null) {
@@ -59,7 +59,7 @@ public class PostsController {
         return new ResponseEntity<PostEntity>(currentPostEntity, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/posts/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/posts/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<PostEntity> deletePost(@PathVariable("id") long id) {
         PostEntity postEntity = postsRepository.findOne(id);
         if (postEntity == null) {

@@ -16,6 +16,7 @@ public class JDBCConfiguration {
         driverManagerDataSource.setUrl("jdbc:h2:mem:CMS_DATABASE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1");
         driverManagerDataSource.setUsername("sa");
         driverManagerDataSource.setPassword("");
+
         return driverManagerDataSource;
     }
 

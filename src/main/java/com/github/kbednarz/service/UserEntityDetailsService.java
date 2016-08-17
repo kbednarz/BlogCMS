@@ -26,7 +26,7 @@ public class UserEntityDetailsService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         UserEntity userEntity = userRepository.findByUsername(username);
         if(userEntity == null) {
-            throw new UsernameNotFoundException("No user with username "+username);
+            throw new UsernameNotFoundException("No postEntity with username "+username);
         }
         List<String> userRoles=userRolesRepository.findRoleByUserName(username);
         return new UserEntityDetails(userEntity,userRoles);
