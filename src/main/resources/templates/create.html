@@ -1,15 +1,61 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>My Blog!</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" href="../static/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css" />
+
+    <script th:src="@{/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"
+            src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" ></script>
 </head>
 <body>
-    <form action="#" th:action="@{/create}" th:object="${newPost}" method="POST">
-        <p>Author: <input type="text" th:name="author" th:field="*{author}" /></p>
-        <p>Title: <input type="text" th:name="title" th:field="*{title}" /></p>
-        <p>Content <input type="text" th:name="content" th:field="*{content}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">My Blog!</a>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Hello on my Blog!</h1>
+        <p>Enjoy your time while reading articles.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+			<h1>Create new article</h1><br/>
+			<form>
+			<input type="text" name="title" class="form-control" placeholder="Title" />
+			<textarea name="content" class="form-control" placeholder="Your article" rows="5"></textarea>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Save article</button>
+			</form>
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <footer>
+        <p>&copy; Blog 2016</p>
+    </footer>
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script th:src="@{/js/vendor/bootstrap.min.js}" src="../static/js/vendor/bootstrap.min.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js" ></script>
+<script th:src="@{/js/main.js}" src="../static/js/main.js" ></script>
+<script th:src="@{/js/module/app.js}" src="../static/js/module/app.js" ></script>
+<script th:src="@{/js/service/posts_service.js}" src="../static/js/service/posts_service.js" ></script>
+<script th:src="@{/js/controller/posts_controller.js}" src="../static/js/controller/posts_controller.js" ></script>
 </body>
 </html>

@@ -5,34 +5,21 @@ import com.github.kbednarz.model.UserRoles;
 import com.github.kbednarz.repo.UserRepository;
 import com.github.kbednarz.repo.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class LoggingController {
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    UserRolesRepository userRolesRepository;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String index(Model model){
-        model.addAttribute("userEntity",new UserEntity());
-        return "login";
-    }
-
-
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createNewUser(Model model, @ModelAttribute("userEntity") UserEntity userEntity){
-        userRepository.save(new UserEntity(userEntity.getUsername(),userEntity.getPassword()));
-        long userId = userRepository.findByUsername(userEntity.getUsername()).getId();
-        UserRoles userRoles = new UserRoles(userId,"ROLE_USER");
-        userRolesRepository.save(userRoles);
-        return "login";
+    @RequestMapping("/user")
+    public UserEntity user() {
+        UserEntity user = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user;
     }
 }

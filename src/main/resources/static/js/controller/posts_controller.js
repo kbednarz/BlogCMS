@@ -12,7 +12,7 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
                     self.postList = d;
                 },
                 function(errResponse){
-                    console.error('Error while fetching Currencies');
+                    console.error('Error while fetching posts');
                 }
             );
     };
@@ -22,7 +22,7 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
             .then(
                 self.fetchAllPosts,
                 function(errResponse){
-                    console.error('Error while creating User.');
+                    console.error('Error while creating post.');
                 }
             );
     };
@@ -32,7 +32,7 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
             .then(
                 self.fetchAllPosts,
                 function(errResponse){
-                    console.error('Error while updating User.');
+                    console.error('Error while updating post.');
                 }
             );
     };
@@ -42,7 +42,7 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
             .then(
                 self.fetchAllPosts,
                 function(errResponse){
-                    console.error('Error while deleting User.');
+                    console.error('Error while deleting post.');
                 }
             );
     };
