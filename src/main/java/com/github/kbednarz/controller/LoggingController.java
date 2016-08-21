@@ -21,5 +21,6 @@ public class LoggingController {
     public UserEntity user() {
         UserEntity user = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return user;
+
     }
 }

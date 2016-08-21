@@ -1,39 +1,41 @@
 App.controller('LoginController',
-    function($rootScope, $scope, $http, $location) {
-        var authenticate = function(callback) {
-            $http.get('/user').success(function(data) {
-                if (data.username) {
+    function($rootScope, $scope, $http, $window) {
+        var authenticate = function (callback) {
+            $http({
+                method: 'GET',
+                url: '/user'
+            }).then(function success(response) {
+                if (response.data.username) {
                     $rootScope.authenticated = true;
                 } else {
                     $rootScope.authenticated = false;
                 }
                 callback && callback();
-            }).error(function() {
+            }, function error() {
                 $rootScope.authenticated = false;
                 callback && callback();
             });
-        }
+        };
         authenticate();
         $scope.credentials = {};
-        $scope.login = function() {
-            $http.post('/login', $.param($scope.credentials), {
-                headers : {
-                    "content-type" : "application/x-www-form-urlencoded"
-                }
-            }).success(function(data) {
-                authenticate(function() {
-                    if ($rootScope.authenticated) {
-                        $location.path("/");
-                        $scope.error = false;
-                    } else {
-                        $location.path("/login");
-                        $scope.error = true;
-                    }
-                });
-            }).error(function(data) {
-                $location.path("/login");
-                $scope.error = true;
-                $rootScope.authenticated = false;
-            })
-        };
+        $scope.login = function () {
+            $http({
+                method: 'POST',
+                url: '/login',
+                data: $.param($scope.credentials),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function success(response) {
+                    authenticate(function () {
+                        if ($rootScope.authenticated) {
+                            $window.location.href = '/index.html';
+                            $scope.error = false;
+                        } else {
+                            $scope.error = true;
+                        }
+                    })
+                }, function error(response) {
+                    $scope.error = true;
+                    $rootScope.authenticated = false;
+                })
+        }
     });
