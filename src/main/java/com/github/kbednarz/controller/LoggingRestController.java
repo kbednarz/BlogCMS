@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class LoggingController {
+public class LoggingRestController {
 
-    @RequestMapping("/user")
+    @RequestMapping("/rest/user")
     public UserEntity user() {
         UserEntity user = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return user;

@@ -1,9 +1,10 @@
 App.controller('LoginController',
     function($rootScope, $scope, $http, $window) {
+
         var authenticate = function (callback) {
             $http({
                 method: 'GET',
-                url: '/user'
+                url: '/rest/user'
             }).then(function success(response) {
                 if (response.data.username) {
                     $rootScope.authenticated = true;
@@ -17,6 +18,7 @@ App.controller('LoginController',
             });
         };
         authenticate();
+
         $scope.credentials = {};
         $scope.login = function () {
             $http({
@@ -27,15 +29,27 @@ App.controller('LoginController',
             }).then(function success(response) {
                     authenticate(function () {
                         if ($rootScope.authenticated) {
-                            $window.location.href = '/index.html';
-                            $scope.error = false;
+                            $scope.login_error = false;
                         } else {
-                            $scope.error = true;
+                            $scope.login_error = true;
                         }
                     })
                 }, function error(response) {
-                    $scope.error = true;
+                    $scope.login_error = true;
                     $rootScope.authenticated = false;
                 })
-        }
+        };
+
+        $scope.logout = function () {
+            $http({
+                method: 'POST',
+                url: '/logout'
+            }).then(function success(response) {
+                $rootScope.authenticated = false;
+                $scope.logout_successful = true;
+            }, function error(response) {
+                $scope.logout_error = true;
+            })
+        };
+
     });

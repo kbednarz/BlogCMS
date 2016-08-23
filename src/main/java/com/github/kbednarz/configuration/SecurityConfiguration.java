@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .formLogin().loginPage("/login").and()
             .authorizeRequests()
             .antMatchers("/index", "/posts", "/login", "/").permitAll()
-            .antMatchers("/user").hasRole("USER")
+            .antMatchers("/rest/user", "/create").hasRole("USER")
             .anyRequest().permitAll().and()
             .csrf().disable();  //enabling causes h2 console error
 
