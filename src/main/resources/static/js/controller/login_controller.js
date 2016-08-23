@@ -1,6 +1,6 @@
 App.controller('LoginController',
     function($rootScope, $scope, $http, $window) {
-
+        var self = this;
         var authenticate = function (callback) {
             $http({
                 method: 'GET',
@@ -20,7 +20,7 @@ App.controller('LoginController',
         authenticate();
 
         $scope.credentials = {};
-        $scope.login = function () {
+        self.login = function () {
             $http({
                 method: 'POST',
                 url: '/login',
@@ -29,26 +29,27 @@ App.controller('LoginController',
             }).then(function success(response) {
                     authenticate(function () {
                         if ($rootScope.authenticated) {
-                            $scope.login_error = false;
+                            self.login_error = false;
                         } else {
-                            $scope.login_error = true;
+                            self.login_error = true;
                         }
                     })
                 }, function error(response) {
-                    $scope.login_error = true;
+                    self.login_error = true;
                     $rootScope.authenticated = false;
                 })
         };
 
-        $scope.logout = function () {
+        self.logout = function () {
             $http({
                 method: 'POST',
                 url: '/logout'
             }).then(function success(response) {
                 $rootScope.authenticated = false;
-                $scope.logout_successful = true;
+                self.logout_successful = true;
+                $window.location.reload();
             }, function error(response) {
-                $scope.logout_error = true;
+                self.logout_error = true;
             })
         };
 

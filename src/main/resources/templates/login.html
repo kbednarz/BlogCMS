@@ -14,11 +14,17 @@
     <script th:src="@{/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"
             src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" ></script>
 </head>
-<body ng-app="blogApp" class="ng-cloak">
+<body ng-app="blogApp" class="ng-cloak" ng-controller="LoginController as loginCtrl">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">My Blog!</a>
+            <a class="navbar-brand" href="/">My Blog!</a>
+        </div>
+        <div class="navbar-form navbar-right">
+            <a ng-show="!authenticated" href="login" class="btn btn-success" role="button">Sign in</a>
+            <div ng-show="authenticated">
+                <button class="btn btn-success" ng-click="loginCtrl.logout()">Log out</button>
+            </div>
         </div>
     </div>
 </nav>
@@ -30,43 +36,43 @@
     </div>
 </div>
 
-<div class="container" ng-controller="LoginController">
+<div class="container">
     <div class="row">
-        <div ng-show="login_error">
+        <div ng-show="loginCtrl.login_error">
             <h2>There was a problem logging in. Please try again.</h2>
         </div>
-        <div ng-show="logout_error">
+        <div ng-show="loginCtrl.logout_error">
             <h2>There was a problem logging out. Please try again.</h2>
         </div>
-        <div ng-show="logout_successful">
-            Logout successful
+        <div ng-show="loginCtrl.logout_successful">
+            <h2>Logged out successfully.</h2>
         </div>
         <div  ng-show="!authenticated">
-            <h2>Please log in or register</h2>
+            <h2>Please log in or register.</h2>
         </div>
     </div>
     <div class="row" ng-show="!authenticated">
         <div class="col-md-4 col-md-offset-2">
 			<h1>Login</h1><br/>
-			<form method="post" ng-submit="login()">
+			<form method="post" ng-submit="loginCtrl.login()">
 			<input type="text" name="username" class="form-control" placeholder="Login" ng-model="credentials.username"/>
 			<input type="password" name="password" class="form-control" placeholder="Password" ng-model="credentials.password"/>
-			<button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+			<button type="submit" class="btn btn-lg btn-primary btn-block">Log in</button>
 			</form>
         </div>
         <div class="col-md-4">
 			<h1>Register</h1><br/>
-			<form class="form-signin">
-			<input type="text" name="username" class="form-control" placeholder="Login" />
-			<input type="password" name="password" class="form-control" placeholder="Password" />
-			<button class="btn btn-lg btn-warning btn-block" type="submit">Join us</button>
-        </form>
+            <form method="post" ng-submit="loginCtrl.register()">
+                <input type="text" name="username" class="form-control" placeholder="Username" ng-model="register_credentials.username"/>
+                <input type="password" name="password" class="form-control" placeholder="Password" ng-model="register_credentials.password"/>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+            </form>
         </div>
     </div>
     <div class="row" ng-show="authenticated">
         <div class="col-md-6 col-md-offset-2">
             <h2>You're already logged in!</h2><br/>
-            <button class="btn btn-success" ng-click="logout()">Log out</button>
+            <button class="btn btn-success" ng-click="loginCtrl.logout()">Log out</button>
         </div>
     </div>
 

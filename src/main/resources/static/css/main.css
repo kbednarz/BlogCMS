@@ -2,8 +2,10 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
+.row{
+    margin-bottom: 10px;
+}
 .post-entity{
-    background-color: #c7ddef;
+    background-color: #faebcc;
     padding: 10px;
 }
