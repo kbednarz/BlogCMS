@@ -13,10 +13,10 @@ public class PostController {
         return "posts";
     }
 
-//    @RequestMapping("/posts/{postId}")
-//    public String showPosts(@PathVariable("postId") int postId){
-//        return "posts";
-//    }
+    @RequestMapping("/post/**")
+    public String showPost(){
+        return "post";
+    }
 
     @RequestMapping("/create")
     public String createPosts(){

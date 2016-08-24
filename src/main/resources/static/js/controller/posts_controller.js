@@ -1,9 +1,11 @@
 'use strict';
 
+
 App.controller('PostsController', ['$scope', 'PostsService', function($scope, PostsService) {
     var self = this;
     self.postEntity={id:null,author:'',title:'',content:'',date:''};
     self.postList=[];
+
 
     self.fetchAllPosts = function(){
         PostsService.fetchAllPosts()
@@ -83,4 +85,21 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
         $scope.myForm.$setPristine(); //reset Form
     }
 
-}]);
+}])
+    .config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
+        $routeProvider.when("/post/:postId",
+            {
+                template: "/post",
+                controller: "SpecificPostController"
+            }
+        );
+        $locationProvider.html5Mode(true);
+
+    }])
+
+    .controller('SpecificPostController', function($scope, $routeParams) {
+        var postId = $routeParams.postId;
+        $scope.postEntity={};
+        $scope.postEntity.id = postId;
+    });
+

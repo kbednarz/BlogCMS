@@ -1,3 +1,3 @@
 'use strict';
 
-var App = angular.module('blogApp',['ngResource']);
+var App = angular.module('blogApp',['ngResource','ngRoute']);

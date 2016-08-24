@@ -40,17 +40,12 @@
 
 <div class="container" ng-controller="PostsController as ctrl">
     <div class="row">
-        <div class="col-md-4 post-entities" ng-repeat="u in ctrl.postList | orderBy:'-' | limitTo:3">
+        <div class="col-md-4 post-entities" ng-repeat="u in ctrl.postList | orderBy:'-'">
             <div class="post-entity">
                 <h2 ng-bind="u.title">Title</h2>
                 <p ng-bind="u.content">Content text</p>
                 <p>By {{u.author}} on {{u.date}}</p>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a href="posts.html" class="btn btn-info pull-right">Show more posts</a>
         </div>
     </div>
 
@@ -64,12 +59,10 @@
 <script th:src="@{/js/vendor/bootstrap.min.js}" src="../static/js/vendor/bootstrap.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js" ></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
 <script th:src="@{/js/main.js}" src="../static/js/main.js" ></script>
 <script th:src="@{/js/module/app.js}" src="../static/js/module/app.js" ></script>
 <script th:src="@{/js/controller/login_controller.js}" src="../static/js/controller/login_controller.js" ></script>
 <script th:src="@{/js/service/posts_service.js}" src="../static/js/service/posts_service.js" ></script>
 <script th:src="@{/js/controller/posts_controller.js}" src="../static/js/controller/posts_controller.js" ></script>
-
 </body>
 </html>
