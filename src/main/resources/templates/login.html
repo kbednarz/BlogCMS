@@ -18,11 +18,13 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">My Blog!</a>
+            <a class="navbar-brand" href="/index">My Blog!</a>
         </div>
         <div class="navbar-form navbar-right">
             <a ng-show="!authenticated" href="login" class="btn btn-success" role="button">Sign in</a>
             <div ng-show="authenticated">
+                <a href="create.html" class="btn btn-success">Create post</a>
+                <a href="manage-posts.html" class="btn btn-success">Manage posts</a>
                 <button class="btn btn-success" ng-click="loginCtrl.logout()">Log out</button>
             </div>
         </div>
@@ -46,6 +48,9 @@
         </div>
         <div ng-show="loginCtrl.logout_successful">
             <h2>Logged out successfully.</h2>
+        </div>
+        <div ng-show="loginCtrl.register_error">
+            <h2>There was a problem registering. Please try again.</h2>
         </div>
         <div  ng-show="!authenticated">
             <h2>Please log in or register.</h2>
@@ -86,6 +91,7 @@
 <script th:src="@{/js/vendor/bootstrap.min.js}" src="../static/js/vendor/bootstrap.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
 <script th:src="@{/js/main.js}" src="../static/js/main.js" ></script>
 <script th:src="@{/js/module/app.js}" src="../static/js/module/app.js" ></script>
 <script th:src="@{/js/controller/login_controller.js}" src="../static/js/controller/login_controller.js" ></script>

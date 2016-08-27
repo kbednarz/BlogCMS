@@ -39,10 +39,12 @@
     </div>
 </div>
 
-<div class="container" ng-controller="PostsController as ctrl">
+<div class="container">
     <div class="row">
         <div class="col-md-12 post-entity">
-            <ng-view>ff {{postEntity.id}}</ng-view>
+            <h2><ng-view>{{postEntity.title}}</ng-view></h2>
+            <p><ng-view>{{postEntity.content}}</ng-view></p>
+            <p>By <ng-view>{{postEntity.author}}</ng-view> on <ng-view>{{postEntity.date}}</ng-view></p>
         </div>
     </div>
 

@@ -43,14 +43,15 @@
         <div class="col-md-4 post-entities" ng-repeat="u in ctrl.postList | orderBy:'-' | limitTo:3">
             <div class="post-entity">
                 <h2 ng-bind="u.title">Title</h2>
-                <p ng-bind="u.content">Content text</p>
+                <p>{{ u.content | limitTo: 100 }}{{u.content.length > 100 ? '...' : ''}}</p>
                 <p>By {{u.author}} on {{u.date}}</p>
+                <a ng-href="/post/{{u.id}}" class="btn btn-info">Show more</a>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="posts.html" class="btn btn-info pull-right">Show more posts</a>
+            <a href="posts.html" class="btn btn-info pull-right">Show all posts</a>
         </div>
     </div>
 

@@ -19,6 +19,18 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
             );
     };
 
+    self.fetchSpecificPost = function(id){
+        PostsService.fetchSpecificPost(id)
+            .then(
+                function(d) {
+                    self.postEntity = d;
+                },
+                function(errResponse){
+                    console.error('Error while fetching specific post');
+                }
+            );
+    };
+
     self.createPost = function(postEntity){
         PostsService.createPost(postEntity)
             .then(
@@ -87,7 +99,8 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
 
 }])
     .config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
-        $routeProvider.when("/post/:postId",
+        $routeProvider
+            .when("/post/:postId",
             {
                 template: "/post",
                 controller: "SpecificPostController"
@@ -97,9 +110,19 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
 
     }])
 
-    .controller('SpecificPostController', function($scope, $routeParams) {
+    .controller('SpecificPostController',['$scope','$routeParams','PostsService', function($scope,$routeParams,PostsService) {
         var postId = $routeParams.postId;
-        $scope.postEntity={};
-        $scope.postEntity.id = postId;
-    });
+        $scope.postEntity={id:null,author:'',title:'',content:'',date:''};
+        if(postId){
+        PostsService.fetchSpecificPost(postId)
+            .then(
+                function(d) {
+                    $scope.postEntity = d;
+                },
+                function(errResponse){
+                    console.error('Error while fetching specific post');
+                }
+            )
+        }
+    }]);
 

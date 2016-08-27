@@ -20,6 +20,8 @@ App.controller('LoginController',
         authenticate();
 
         $scope.credentials = {};
+        $scope.register_credentials = {};
+
         self.login = function () {
             $http({
                 method: 'POST',
@@ -53,4 +55,19 @@ App.controller('LoginController',
             })
         };
 
+        self.register = function () {
+            $http({
+                method: 'POST',
+                url: '/rest/user',
+                data: $.param($scope.register_credentials),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function success(response) {
+                self.register_successful = true;
+                console.log(response.data)
+            }, function error(response) {
+                self.register_error = true;
+                console.log(response.data);
+                console.log($scope.register_credentials)
+            })
+        };
     });
