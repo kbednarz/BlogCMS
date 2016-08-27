@@ -41,13 +41,19 @@
 <div class="container">
     <div class="row">
         <div ng-show="loginCtrl.login_error">
-            <h2>There was a problem logging in. Please try again.</h2>
+            <h2>There was a problem logging in. Please try again later.</h2>
+        </div>
+        <div ng-show="loginCtrl.loginCredentials_error">
+            <h2>Invalid credentials. Please try again.</h2>
         </div>
         <div ng-show="loginCtrl.logout_error">
             <h2>There was a problem logging out. Please try again.</h2>
         </div>
         <div ng-show="loginCtrl.logout_successful">
             <h2>Logged out successfully.</h2>
+        </div>
+        <div ng-show="loginCtrl.register_successful">
+            <h2>Registered successfully.</h2>
         </div>
         <div ng-show="loginCtrl.register_error">
             <h2>There was a problem registering. Please try again.</h2>

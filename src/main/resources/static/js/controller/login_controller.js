@@ -33,7 +33,7 @@ App.controller('LoginController',
                         if ($rootScope.authenticated) {
                             self.login_error = false;
                         } else {
-                            self.login_error = true;
+                            self.loginCredentials_error = true;
                         }
                     })
                 }, function error(response) {
@@ -63,11 +63,8 @@ App.controller('LoginController',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function success(response) {
                 self.register_successful = true;
-                console.log(response.data)
             }, function error(response) {
                 self.register_error = true;
-                console.log(response.data);
-                console.log($scope.register_credentials)
             })
         };
     });

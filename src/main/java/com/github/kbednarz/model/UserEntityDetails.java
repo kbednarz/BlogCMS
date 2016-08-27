@@ -8,9 +8,7 @@ import org.springframework.util.StringUtils;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by Kamil on 2016-08-14.
- */
+
 public class UserEntityDetails extends UserEntity implements UserDetails {
     private List<String> userRoles;
 

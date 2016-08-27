@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,12 +22,14 @@ public class UserEntityDetailsService implements UserDetailsService{
     UserRepository userRepository;
     @Autowired
     UserRolesRepository userRolesRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         UserEntity userEntity = userRepository.findByUsername(username);
         if(userEntity == null) {
-            throw new UsernameNotFoundException("No postEntity with username "+username);
+            throw new UsernameNotFoundException("No postEntity with username: "+username);
         }
         List<String> userRoles=userRolesRepository.findRoleByUserName(username);
         return new UserEntityDetails(userEntity,userRoles);
