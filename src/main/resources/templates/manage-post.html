@@ -13,18 +13,19 @@
 
     <script th:src="@{/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"
             src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" ></script>
+    <base href="/" />
 </head>
-<body>
+<body ng-app="blogApp" class="ng-cloak" ng-controller="LoginController as loginCtrl">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">My Blog!</a>
+            <a target="_self" class="navbar-brand" href="#">My Blog!</a>
         </div>
         <div class="navbar-form navbar-right">
-            <a ng-show="!authenticated" href="login" class="btn btn-success" role="button">Sign in</a>
+            <a target="_self" ng-show="!authenticated" href="login" class="btn btn-success" role="button">Sign in</a>
             <div ng-show="authenticated">
-                <a href="create.html" class="btn btn-success">Create post</a>
-                <a href="manage-posts.html" class="btn btn-success">Manage posts</a>
+                <a target="_self" href="manage-post.html" class="btn btn-success">Create post</a>
+                <a target="_self" href="manage-posts.html" class="btn btn-success">Manage posts</a>
                 <button class="btn btn-success" ng-click="loginCtrl.logout()">Log out</button>
             </div>
         </div>
@@ -38,17 +39,15 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-			<h1>Create new article</h1><br/>
-			<form>
-			<input type="text" name="title" class="form-control" placeholder="Title" />
-			<textarea name="content" class="form-control" placeholder="Your article" rows="5"></textarea>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Save article</button>
-			</form>
-        </div>
-
+<div class="container" ng-controller="PostsController as ctrl" ng-init="ctrl.showPostFromParam()">
+    <div class="col-md-12">
+        <h1>{{ctrl.postEntity.id ? "Update article" : "Create new article"}}</h1><br/>
+        <form name="postForm">
+            <input type="text" name="title" class="form-control" placeholder="Title" ng-model="ctrl.postEntity.title"/>
+            <textarea name="content" class="form-control" placeholder="Your article" rows="5" ng-model="ctrl.postEntity.content"></textarea>
+            <button class="btn btn-lg btn-primary" ng-click="ctrl.submit()">{{ctrl.postEntity.id ? "Update" : "Save"}}</button>
+            <button class="btn btn-info" ng-click="ctrl.reset()">Reset</button>
+        </form>
     </div>
 
     <hr/>
@@ -61,8 +60,10 @@
 <script th:src="@{/js/vendor/bootstrap.min.js}" src="../static/js/vendor/bootstrap.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
 <script th:src="@{/js/main.js}" src="../static/js/main.js" ></script>
 <script th:src="@{/js/module/app.js}" src="../static/js/module/app.js" ></script>
+<script th:src="@{/js/controller/login_controller.js}" src="../static/js/controller/login_controller.js" ></script>
 <script th:src="@{/js/service/posts_service.js}" src="../static/js/service/posts_service.js" ></script>
 <script th:src="@{/js/controller/posts_controller.js}" src="../static/js/controller/posts_controller.js" ></script>
 </body>

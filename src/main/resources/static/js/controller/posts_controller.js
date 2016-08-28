@@ -1,7 +1,7 @@
 'use strict';
 
 
-App.controller('PostsController', ['$scope', 'PostsService', function($scope, PostsService) {
+App.controller('PostsController', ['$scope','$location','PostsService', function($scope, $location, PostsService) {
     var self = this;
     self.postEntity={id:null,author:'',title:'',content:'',date:''};
     self.postList=[];
@@ -94,8 +94,19 @@ App.controller('PostsController', ['$scope', 'PostsService', function($scope, Po
 
     self.reset = function(){
         self.postEntity={id:null,author:'',title:'',content:'',date:''};
-        $scope.myForm.$setPristine(); //reset Form
+        $scope.postForm.$setPristine(); //reset Form
     }
+
+    self.showPostFromParam = function () {
+        var postId = $location.search().postId;
+        if(postId){
+            self.fetchSpecificPost(postId);
+        }
+
+
+
+    }
+
 
 }])
     .config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){

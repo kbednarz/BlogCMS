@@ -13,18 +13,19 @@
 
     <script th:src="@{/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js}"
             src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" ></script>
+    <base href="/" />
 </head>
 <body ng-app="blogApp" class="ng-cloak" ng-controller="LoginController as loginCtrl">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/index">My Blog!</a>
+            <a target="_self" class="navbar-brand" href="/index">My Blog!</a>
         </div>
         <div class="navbar-form navbar-right">
-            <a ng-show="!authenticated" href="login" class="btn btn-success" role="button">Sign in</a>
+            <a target="_self" ng-show="!authenticated" href="login" class="btn btn-success" role="button">Sign in</a>
             <div ng-show="authenticated">
-                <a href="create.html" class="btn btn-success">Create post</a>
-                <a href="manage-posts.html" class="btn btn-success">Manage posts</a>
+                <a target="_self" href="manage-post.html" class="btn btn-success">Create post</a>
+                <a target="_self" href="manage-posts.html" class="btn btn-success">Manage posts</a>
                 <button class="btn btn-success" ng-click="loginCtrl.logout()">Log out</button>
             </div>
         </div>
