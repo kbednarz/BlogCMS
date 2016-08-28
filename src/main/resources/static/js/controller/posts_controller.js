@@ -102,9 +102,6 @@ App.controller('PostsController', ['$scope','$location','PostsService', function
         if(postId){
             self.fetchSpecificPost(postId);
         }
-
-
-
     }
 
 

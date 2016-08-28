@@ -57,7 +57,7 @@
                     <th>{{u.author}}</th>
                     <th>{{u.date}}</th>
                     <th><a target="_self" ng-href="/manage-post?postId={{u.id}}" class="btn btn-info" >Edit</a></th>
-                    <th><button class="btn-warning" ng-click="ctrl.remove(u.id)" confirmation-needed="Delete post with id {{u.id}}?">Delete</button></th>
+                    <th><button class="btn btn-warning" ng-click="ctrl.remove(u.id)" confirmation-needed="Delete post with id {{u.id}}?">Delete</button></th>
                 </tr>
             </table>
         </div>

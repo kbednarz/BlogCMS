@@ -47,6 +47,8 @@
             <textarea name="content" class="form-control" placeholder="Your article" rows="5" ng-model="ctrl.postEntity.content"></textarea>
             <button class="btn btn-lg btn-primary" ng-click="ctrl.submit()">{{ctrl.postEntity.id ? "Update" : "Save"}}</button>
             <button class="btn btn-info" ng-click="ctrl.reset()">Reset</button>
+            <button class="btn btn-warning" ng-show="ctrl.postEntity.id"
+                    ng-click="ctrl.remove(ctrl.postEntity.id)">Delete</button>
         </form>
     </div>
 
