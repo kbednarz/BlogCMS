@@ -9,3 +9,8 @@ body {
     background-color: #faebcc;
     padding: 10px;
 }
+
+th {
+    padding: 10px;
+    border: 1px solid #3c3c3c;
+}

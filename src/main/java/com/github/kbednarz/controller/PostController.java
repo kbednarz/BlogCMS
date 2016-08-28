@@ -23,4 +23,9 @@ public class PostController {
         return "create";
     }
 
+    @RequestMapping("/manage-posts")
+    public String managePosts(){
+        return "manage-posts";
+    }
+
 }

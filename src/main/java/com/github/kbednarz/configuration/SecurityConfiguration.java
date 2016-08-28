@@ -57,4 +57,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userEntityDetailsService);
         auth.authenticationProvider(authenticationProvider());
     }
+
 }

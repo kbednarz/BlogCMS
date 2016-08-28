@@ -34,18 +34,31 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Hello on my Blog!</h1>
-        <p>Enjoy your time while reading articles.</p>
+        <p>Manage yours posts!</p>
     </div>
 </div>
 
 <div class="container" ng-controller="PostsController as ctrl">
     <div class="row">
-        <div class="col-md-4 post-entities" ng-repeat="u in ctrl.postList | orderBy:'-'">
-            <div class="post-entity">
-                <h2 ng-bind="u.title">Title</h2>
-                <p ng-bind="u.content">Content text</p>
-                <p>By {{u.author}} on {{u.date}}</p>
-            </div>
+        <div class="col-md-12 post-entities">
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="u in ctrl.postList | orderBy:'-'">
+                    <th>{{u.title}}</th>
+                    <th>{{ u.content | limitTo: 100 }}{{u.content.length > 100 ? '...' : ''}}</th>
+                    <th>{{u.author}}</th>
+                    <th>{{u.date}}</th>
+                    <th><button class="btn-info" ng-click="ctrl.edit(u.id)">Edit</button></th>
+                    <th><button class="btn-warning" ng-click="ctrl.remove(u.id)" confirmation-needed="Delete post with id {{u.id}}?">Delete</button></th>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -59,6 +72,7 @@
 <script th:src="@{/js/vendor/bootstrap.min.js}" src="../static/js/vendor/bootstrap.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
 <script th:src="@{/js/main.js}" src="../static/js/main.js" ></script>
 <script th:src="@{/js/module/app.js}" src="../static/js/module/app.js" ></script>
 <script th:src="@{/js/controller/login_controller.js}" src="../static/js/controller/login_controller.js" ></script>
