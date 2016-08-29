@@ -7,15 +7,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-
 import java.sql.Date;
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Kamil on 2016-06-29.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BlogCmsApplication.class)
 public class PostsRepositoryTest {
@@ -23,19 +19,23 @@ public class PostsRepositoryTest {
     private PostsRepository postsRepository;
 
     @Test
-    public void shouldFind(){
+    public void shouldFindPost(){
         Date date = new Date(System.currentTimeMillis());
-        PostEntity initialEntity = new PostEntity("Kamil","Tytul","Zawartosc",date);
+        PostEntity initialEntity = new PostEntity("Kamil","Tiiiittttle","Content ipsum",date);
         postsRepository.save(initialEntity);
 
         PostEntity entity;
-        entity = postsRepository.findOne(initialEntity.getId());
+        Iterator<PostEntity> iter;
+        iter = postsRepository.findAll().iterator();
+        do{
+            entity = iter.next();
+        } while (iter.hasNext());
 
         assertNotNull(entity);
         assertEquals(initialEntity.getAuthor(),entity.getAuthor());
         assertEquals(initialEntity.getContent(),entity.getContent());
         assertEquals(initialEntity.getTitle(),entity.getTitle());
-        assertEquals(initialEntity.getDate(),entity.getDate());
+        assertEquals(initialEntity.getDate().toString().trim(),entity.getDate().toString().trim());
 
     }
 }
