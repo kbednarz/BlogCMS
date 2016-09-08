@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "USERS")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
     @Column(unique=true)
     private String username;
@@ -27,6 +27,10 @@ public class UserEntity {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {

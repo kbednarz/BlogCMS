@@ -7,7 +7,7 @@ import java.sql.Date;
 @Table(name = "POSTS")
 public class PostEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String author;
     private String title;
