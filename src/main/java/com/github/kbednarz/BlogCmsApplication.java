@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ImportResource;
 
 
 @SpringBootApplication
-@ImportResource("classpath:WEB-INF/dataSource.xml")
+@ImportResource({"classpath:WEB-INF/dataSource.xml","classpath:WEB-INF/dataSourceTest.xml"})
 public class BlogCmsApplication {
 
 	public static void main(String[] args) {
