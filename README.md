@@ -10,11 +10,14 @@ Simple, Spring based, RESTful Content Management System.
 - spring-boot
 - spring-security
 - spring-jdbc
+- hibernate
 - REST
 - thymeleaf
 - bootstrap
 - angularJS
+- postgreSQL
 - h2 in memory db
+- JUnit
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)
