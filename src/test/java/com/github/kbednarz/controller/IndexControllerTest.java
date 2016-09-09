@@ -26,7 +26,7 @@ public class IndexControllerTest {
 
     @Before
     public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
     @Test
